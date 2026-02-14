@@ -1,195 +1,227 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Your Name</title>
-  <meta name="description" content="Jisela Newman — personal website, projects, resume, and contact." />
+:root {
+  --bg: #0b0d10;
+  --panel: #11151b;
+  --text: #e8edf3;
+  --muted: #a7b0bc;
+  --border: rgba(255,255,255,0.08);
+  --shadow: 0 10px 30px rgba(0,0,0,0.35);
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  --radius: 18px;
+  --max: 980px;
+}
 
-  <link rel="stylesheet" href="style.css" />
-</head>
+:root[data-theme="light"] {
+  --bg: #f7f8fa;
+  --panel: #ffffff;
+  --text: #0b0d10;
+  --muted: #4b5563;
+  --border: rgba(0,0,0,0.10);
+  --shadow: 0 10px 30px rgba(0,0,0,0.10);
+}
 
-<body>
-  <header class="topbar">
-    <a class="brand" href="#top" aria-label="Go to top">Jisela Newman</a>
+* { box-sizing: border-box; }
+html, body { height: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(120, 140, 255, 0.25), transparent 60%),
+    radial-gradient(900px 500px at 90% 0%, rgba(255, 120, 200, 0.18), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+}
 
-    <nav class="nav" aria-label="Primary navigation">
-      <a href="#about">About Me</a>
-      <a href="#projects">Projects</a>
-      <a href="#resume">Resume</a>
-      <a href="#contact">Contact</a>
-      <button id="themeBtn" class="btn btn-ghost" type="button" aria-label="Toggle theme">
-        Theme
-      </button>
-    </nav>
-  </header>
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
 
-  <main id="top" class="container">
-    <!-- HERO -->
-    <section class="hero" aria-label="Intro">
-      <div class="heroText">
-        <p class="kicker">Major • University of Miami</p>
-        <h1>Your Name</h1>
-        <p class="lead">
-          Welcome to my personal website — here you’ll find a bit about me, selected projects, my resume, and ways to connect.
-        </p>
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+}
 
-        <div class="cta">
-          <a class="btn" href="#projects">See Projects</a>
-          <a class="btn btn-ghost" href="#contact">Contact</a>
-        </div>
+.brand { font-weight: 700; letter-spacing: 0.2px; }
 
-        <div class="social" aria-label="Social links">
-          <!-- GitHub (replace YOUR_GITHUB with your username or full URL) -->
-          <a class="iconBtn" href="https://github.com/jiselalee-creator" target="_blank" rel="noreferrer" aria-label="GitHub">
-            <!-- GitHub SVG -->
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.5 2.87 8.31 6.84 9.66.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.12-1.52-1.12-1.52-.91-.64.07-.63.07-.63 1.01.07 1.54 1.06 1.54 1.06.9 1.57 2.36 1.12 2.94.86.09-.66.35-1.12.64-1.37-2.22-.26-4.56-1.15-4.56-5.12 0-1.13.39-2.05 1.03-2.77-.1-.26-.45-1.31.1-2.72 0 0 .84-.27 2.75 1.06.8-.23 1.66-.35 2.52-.35.86 0 1.72.12 2.52.35 1.91-1.33 2.75-1.06 2.75-1.06.55 1.41.2 2.46.1 2.72.64.72 1.03 1.64 1.03 2.77 0 3.98-2.34 4.86-4.57 5.12.36.32.69.95.69 1.92 0 1.38-.01 2.5-.01 2.84 0 .26.18.59.69.48A10.05 10.05 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"/>
-            </svg>
-          </a>
+.nav {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.nav a { color: var(--muted); font-weight: 600; }
+.nav a:hover { color: var(--text); text-decoration: none; }
 
-          <!-- LinkedIn -->
-          <a class="iconBtn" href="www.linkedin.com/in/jisela-newman" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-            <!-- LinkedIn SVG -->
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20.45 20.45h-3.55v-5.56c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.66H9.35V9h3.41v1.56h.05c.48-.9 1.66-1.86 3.41-1.86 3.65 0 4.33 2.4 4.33 5.52v6.23zM5.34 7.44a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
-            </svg>
-          </a>
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 28px 18px 60px;
+}
 
-          <!-- Email -->
-          <a class="iconBtn" href="mailto:jisela.lee@gmail.com" aria-label="Email">
-            <!-- Mail SVG -->
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
+.hero {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--panel) 92%, transparent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
 
-      <div class="heroMedia">
-        <!-- Put your photo in the repo as profile.jpg (or update the src) -->
-        <img class="avatar" src="profile.jpg" alt="Photo of Jisela Newman" />
-        <div class="miniCard">
-          <div class="miniRow">
-            <span class="label">Email</span>
-            <span class="value">jisela.lee@gmail.com</span>
-          </div>
-          <div class="miniRow">
-            <span class="label">LinkedIn</span>
-            <span class="value">/Jisela Newman-41662228a</span>
-          </div>
-        </div>
-      </div>
-    </section>
+.kicker { color: var(--muted); margin: 0 0 8px; font-weight: 600; }
+h1 { margin: 0 0 10px; font-size: 44px; line-height: 1.1; letter-spacing: -0.6px; }
+.lead { margin: 0 0 16px; color: var(--muted); font-size: 16px; }
 
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <div class="sectionHead">
-        <h2>About Me</h2>
-        <p>Defining possible.</p>
-      </div>
+.cta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
 
-      <div class="card wide">
-        <p>
-          I’m Jisela Newman, Data Science and AI student at the University of Miami, interested in building practical,
-          real-world systems. I enjoy hands-on technical work, collaboration, and learning technologies that launch!
-        </p>
-        <p class="muted">
-         3-6 sentences about yourself.
-        </p>
-      </div>
-    </section>
+.social {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-      <div class="sectionHead">
-        <h2>Projects</h2>
-        <p>Built a game menu and a tic-tac-toe).</p>
-      </div>
+.heroMedia {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
 
-      <div class="grid">
-        <article class="card">
-          <h3>Project Title</h3>
-          <p>What you built + why it matters (impact/learning).</p>
-          <div class="tags">
-            <span>HTML</span><span>CSS</span><span>GitHub Pages</span>
-          </div>
-          <div class="links">
-            <a href="#" target="_blank" rel="noreferrer">Live</a>
-            <a href="#" target="_blank" rel="noreferrer">Code</a>
-          </div>
-        </article>
+.avatar {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: calc(var(--radius) + 6px);
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--panel) 96%, transparent);
+}
 
-        <article class="card">
-          <h3>Embedded / ARMv7 Work</h3>
-          <p>Interrupt handling, GIC, interfacing experiments (add a short highlight).</p>
-          <div class="tags">
-            <span>C</span><span>ARM</span><span>DE1-SoC</span>
-          </div>
-          <div class="links">
-            <a href="#" target="_blank" rel="noreferrer">Write-up</a>
-            <a href="#" target="_blank" rel="noreferrer">Code</a>
-          </div>
-        </article>
+.miniCard {
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--panel) 96%, transparent);
+  border-radius: calc(var(--radius) - 6px);
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+}
 
-        <article class="card">
-          <h3>Controls / MATLAB</h3>
-          <p>Modeling, simulation, design work (add 1 outcome or key result).</p>
-          <div class="tags">
-            <span>MATLAB</span><span>Control Systems</span>
-          </div>
-          <div class="links">
-            <a href="#" target="_blank" rel="noreferrer">Report</a>
-            <a href="#" target="_blank" rel="noreferrer">Code</a>
-          </div>
-        </article>
-      </div>
-    </section>
+.miniRow { display: grid; gap: 4px; }
+.label { font-size: 12px; color: var(--muted); font-weight: 600; }
+.value { font-weight: 600; word-break: break-word; }
 
-    <!-- RESUME -->
-    <section id="resume" class="section">
-      <div class="sectionHead">
-        <h2>Resume</h2>
-        <p>Upload your resume to this repo as <strong>resume.pdf</strong>.</p>
-      </div>
+.section { margin-top: 26px; }
+.sectionHead h2 { margin: 0; font-size: 22px; letter-spacing: -0.2px; }
+.sectionHead p { margin: 6px 0 0; color: var(--muted); }
 
-      <div class="card wide resumeCard">
-        <p>
-          <strong>Download:</strong>
-          <a href="resume.pdf" target="_blank" rel="noreferrer">resume.pdf</a>
-        </p>
-        <p class="muted">
-          Tip: Keep the file name exactly <code>resume.pdf</code> so the link never breaks.
-        </p>
-      </div>
-    </section>
+.grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
 
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <div class="sectionHead">
-        <h2>Contact</h2>
-        <p>Best ways to reach me.</p>
-      </div>
+.card {
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--panel) 96%, transparent);
+  border-radius: var(--radius);
+  padding: 16px;
+  transition: transform 120ms ease, border-color 120ms ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--text) 18%, var(--border));
+}
 
-      <div class="contact">
-        <a class="btn" href="mailto:jisela.lee@gmail.com">Email Me</a>
-        <a class="btn btn-ghost" href="www.linkedin.com/in/jisela-newman target="_blank" rel="noreferrer">LinkedIn</a>
-        <!-- GitHub placeholder -->
-        <a class="btn btn-ghost" href="https://github.com/jiselalee" target="_blank" rel="noreferrer">GitHub</a>
-      </div>
-    </section>
+.card h3 { margin: 0 0 8px; }
+.card p { margin: 0 0 12px; color: var(--muted); }
 
-    <footer class="footer">
-      <span>© <span id="year"></span> Your Name </span>
-      <span class="dot">•</span>
-      <a href="#top">Back to top</a>
-    </footer>
-  </main>
+.card.wide { margin-top: 14px; }
 
-  <script src="script.js"></script>
-</body>
-</html>
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.tags span {
+  font-size: 12px;
+  border: 1px solid var(--border);
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: var(--muted);
+}
+
+.links { display: flex; gap: 14px; font-weight: 600; }
+.links a { color: var(--text); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--text) 18%, var(--border));
+  background: color-mix(in srgb, var(--text) 10%, transparent);
+  font-weight: 700;
+}
+.btn:hover { text-decoration: none; }
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+.btn-ghost:hover { color: var(--text); }
+
+.iconBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--panel) 96%, transparent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 120ms ease, border-color 120ms ease;
+}
+.iconBtn:hover {
+  transform: translateY(-2px);
+  text-decoration: none;
+  border-color: color-mix(in srgb, var(--text) 18%, var(--border));
+}
+.iconBtn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.contact {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.muted { color: var(--muted); }
+
+.footer {
+  margin-top: 34px;
+  color: var(--muted);
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.dot { opacity: 0.6; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr; }
+  h1 { font-size: 36px; }
+  .nav { flex-wrap: wrap; justify-content: flex-end; }
+}
